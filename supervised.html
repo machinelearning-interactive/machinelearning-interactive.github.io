@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Supervised Learning</title>
+
+	<!-- font Awesome CDN link -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="agenda.css">
+	<link rel="stylesheet" href="blog.css">
+
+	<!-- JQuery CDN link -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body class = "unsupervised">
+	<!-- Navigation start -->
+	<nav>
+			<img src="img/neural_net.png" class="logo" alt="">
+
+			<div class="navigation">
+				<ul>
+					<i id="menu-close" class="fas fa-times"></i>
+					<li><a href="index.html" >Home</a></li>
+					<li><a href="unsupervised.html">Unsupervised Learning</a></li>
+					<li><a href="supervised.html"class="active">Supervised Learning</a></li>
+					<li><a href="recordings.html">Video Tutorials</a></li>
+				</ul>
+				<img src="img/menu.png" id="menu-btn" alt="">
+			</div>
+	</nav>
+	<!-- Navigation ends -->
+
+<!-- Spacer starts -->
+<div id="navbar-spacer"></div>
+<!-- Spacer ends -->
+
+<!-- Wrapper for supervised learning section -->
+<div class="unsup-section-wrapper">
+
+  <!-- Main text area (left column of grid) -->
+  <div class="unsup-center-content">
+    <section id="unsup" class="unsup-content-block">
+      <div class="unsup-inner">
+        <h2>Supervised Learning:</h2>
+        <p>
+          Click on boxes below to learn more.
+        </p>
+
+        <div class="btn">
+          <div class="tooltip-button purple" tabindex="0" data-target="regress">
+            <span class="btn-title">Regression:</span>
+            <span class="btn-desc">######</span>
+          </div>
+
+          <div class="tooltip-button teal" tabindex="0" data-target="classif">
+            <span class="btn-title">Classification:</span>
+            <span class="btn-desc">############</span>
+          </div>
+        </div>
+
+        <!-- Details sections, initially hidden -->
+        <div id="regress" class="details-section">
+          <h3>Regression Methods</h3>
+          <ul>
+            <li>
+            	<button class="subtoggle" data-target="pca-detail"><strong>####</strong></button>: ####
+		          <div id="pca-detail" class="subdetails">
+				      <p>
+				        #####
+				      </p>
+			    </div>
+		    </li>
+            <li>
+            	<button class="subtoggle" data-target="tsne-detail"><strong>##</strong></button>: ##
+		          <div id="tsne-detail" class="subdetails">
+				      <p>
+				       ###
+				      </p>
+				      <img id="tsne-img" src="img/tsne.webp" alt="t-SNE Diagram" />
+			    </div>
+            </li>
+          </ul>
+        </div>
+
+        <div id="classif" class="details-section">   <!-- Classification -->
+          <h3>Claissification Methods</h3>
+          <ul>
+          	<li>
+          		<button class="subtoggle" data-target="kmeans"><strong>###</strong></button>: ###
+		          <div id="kmeans" class="subdetails">
+				      <p>
+				        ########
+				      </p>
+				      <img id="kmeans-img" src="img/kmeans.webp" alt="K-Means Diagram" />
+			    		</div>
+						</li>
+						<li>    
+          		<button class="subtoggle" data-target="dbscan"><strong>###</strong></button>: ####
+		          <div id="dbscan" class="subdetails">
+				      <p>
+				        ########
+				      </p>
+				      <img id="dbscan-img" src="img/dbscan.png" alt="DBSCAN Diagram" />
+			    		</div>
+						</li>    
+          </ul>
+        </div>
+      </div> <!-- End unsup-inner -->
+    </section>
+  </div>
+  <!-- Image area (right column of grid) -->
+  <div class="unsup-image-side">
+    <figure>
+      <img src="img/sup_da_poian.jpg" alt="Supervised Learning Diagram"/>
+      <figcaption>Supervised Learning Diagram. <br>Image credit: Da Poian et al. 2023
+ 	  </figcaption>
+    </figure>
+  </div>
+
+</div> <!-- closes unsup-section-wrapper -->
+
+
+
+
+<!-- Footer section starts from here -->
+		<div id="footer"></div>
+		<script>
+		    fetch('footer.html')
+		        .then(response => {
+		            if (response.ok) {
+		                return response.text();
+		            }
+		            throw new Error('Failed to load footer');
+		        })
+		        .then(data => {
+		            document.getElementById('footer').innerHTML = data;
+		        })
+		        .catch(error => console.error(error));
+		</script>
+<!-- Footer section ends from here -->
+	
+	<script>
+		// Show menu links on burger click
+		$('#menu-btn').click(function(){
+			$('nav .navigation ul').addClass('active')
+		});
+
+		// Hide navbar on click function
+		$('#menu-close').click(function(){
+			$('nav .navigation ul').removeClass('active')
+		});
+
+			document.querySelectorAll('.tooltip-button').forEach(button => {
+	  button.addEventListener('click', e => {
+	    // Remove active class from other buttons
+	    document.querySelectorAll('.tooltip-button.active').forEach(activeBtn => {
+	      if (activeBtn !== button) activeBtn.classList.remove('active');
+	    });
+	</script>
+
+<script>
+  // Toggle active class on clicked tooltip-button
+  document.querySelectorAll('.tooltip-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const targetId = button.getAttribute('data-target');
+      const section = document.getElementById(targetId);
+      const isActive = button.classList.contains('active');
+
+      // Close all tooltip-buttons and hide their detail sections
+      document.querySelectorAll('.tooltip-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.details-section').forEach(sec => {
+        sec.style.display = 'none';
+        // Also hide all subdetails inside
+        sec.querySelectorAll('.subdetails').forEach(sub => sub.style.display = 'none');
+      });
+
+      if (!isActive) {
+        button.classList.add('active');
+        section.style.display = 'block';
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // // Close tooltip if clicking outside any tooltip-button
+  // document.addEventListener('click', e => {
+  //   if (!e.target.closest('.tooltip-button') && !e.target.closest('.details-section')) {
+  //     document.querySelectorAll('.tooltip-button').forEach(btn => btn.classList.remove('active'));
+  //     document.querySelectorAll('.details-section').forEach(sec => {
+  //       sec.style.display = 'none';
+  //       sec.querySelectorAll('.subdetails').forEach(sub => sub.style.display = 'none');
+  //     });
+  //   }
+  // });
+
+// Toggle sub-detail panels (e.g. PCA)
+  document.querySelectorAll(".subtoggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const panelId = btn.getAttribute("data-target");
+      const panel = document.getElementById(panelId);
+
+      // Toggle visibility independently
+      panel.style.display = (panel.style.display === "block") ? "none" : "block";
+    });
+  });
+
+</script>
+
+
+
+
+
+</body>
+</html>

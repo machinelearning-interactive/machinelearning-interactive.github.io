@@ -1,0 +1,956 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+
+*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body
+{
+	font-family: Arial,'Poppins', sans-serif;
+	flex: 1;
+}
+
+h1
+{
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: rgb(35, 35, 85);
+}
+
+span
+{
+	font-size: .9rem;
+}
+
+h6
+{
+	font-size: 1.1rem;
+	color: rgb(24, 24, 49);
+}
+
+/** {
+  outline: 1px solid rgba(255, 0, 0, 0.3);
+}*/
+
+
+
+/*------------- Shared layout and styling ------------*/
+.page-section {
+  padding-top: 90px;
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Shared heading styling */
+.page-section h2 {
+  color: black;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+/* Shared button container */
+.page-section .btn {
+  margin-top: 30px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Shared button links */
+.page-section a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 10px 35px;
+  background-color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive button font sizing */
+.page-section .btn a {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+/* Optional colors for buttons — customize these */
+a.blue {
+  background-color: #007BFF;
+  color: white;
+}
+
+a.blue:hover {
+  background-color: #0056b3;
+}
+
+a.yellow {
+  background-color: #FFD54F;
+  color: black;
+}
+
+a.yellow:hover {
+  background-color: #FBC02D;
+}
+/*------------- END Shared layout and styling ------------*/
+
+
+
+.btn {
+  width: 700px;
+  max-width: 100%;
+  margin: 1.5rem auto 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+
+
+
+/*------------- Button Pop-up Window ------------*/
+.tooltip-button {
+  flex: 1 1 300px;
+  max-width: 350px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s;
+  color: white;
+  user-select: none;
+  margin: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+
+.tooltip-button.blue {
+  background-color: #007BFF;
+}
+
+.tooltip-button.yellow {
+  background-color: #FFD54F;
+  color: black;
+}
+
+.tooltip-button.purple {
+  background-color: #7E57C2;
+  color: white;
+}
+
+.tooltip-button.teal {
+  background-color: #26A69A;
+  color: white;
+}
+
+
+/* Tooltip text, initially hidden */
+.tooltip-text {
+  visibility: hidden;
+  width: 180px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Show above the button */
+  left: 50%;
+  margin-left: -90px; /* Center tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+/* Tooltip arrow */
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* At the bottom of tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+}
+
+/* Show tooltip on hover */
+.tooltip-button:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tooltip-button:focus .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tooltip-button:hover {
+  /*transform: scale(1.03);*/
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+
+/* Show tooltip when active class is added (for mobile tap) */
+.tooltip-button.active .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+/*------------- END Button Pop-up Window ------------*/
+
+
+/*------------- Navigation style start ------------*/
+nav
+{
+	position: fixed;
+	width: 100%;
+	background-color: #fff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1vw 8vw;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+	z-index: 1;
+	height: 90px; 
+}
+
+nav .logo
+{
+	width: clamp(50px, 20vw, 130px);
+    height: auto;
+    display: block;
+}
+
+nav .navigation {
+	display: flex;
+}
+
+#menu-btn
+{
+	width: 30px;
+	height: 30px;
+	display: none;
+}
+
+#menu-close
+{
+	display: none;
+}
+
+nav .navigation ul
+{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+nav .navigation ul li
+{
+	list-style: none;
+	margin-left: 30px;
+}
+
+nav .navigation ul li a
+{
+	text-decoration: none;
+	color: rgb(21, 21, 100);
+	font-size: 16px;
+	font-weight: 500;
+	transition: 0.3s ease;
+}
+
+nav .navigation ul li a.active,
+nav .navigation ul li a:hover
+{
+	color: #FDC93B;
+
+}
+/*------------- Navigation style end ------------*/
+
+
+#navbar-spacer {
+    height: 90px;
+    flex-shrink: 0;  /* Prevent shrinking if inside flex container */
+    flex-grow: 0;    /* Prevent growing */
+    width: 100%;
+}
+
+
+
+/*------------- Hero section styling start --------------*/
+#home {
+	background-image: linear-gradient(rgba(235, 228, 215, 0.3), rgba(225, 218, 205, 0.3)), url("img/test_back_art.jpeg");
+
+
+    padding-top: 30px;
+    width: 100%;
+    height: 85vh;
+    background-position: center top ;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+}
+
+.text-background {
+    background-color: rgba(255, 255, 255, 0.95); 
+    padding: 20px;
+    border-radius: 8px; 
+    display: inline-block; 
+    max-width: 80%; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  
+}
+
+#partner
+{
+    display: flex;
+	justify-content: center	;
+    align-items: center; 
+    gap: 20px; 
+    flex-wrap: wrap;
+}	
+
+
+#home h2
+{
+	color: black;
+	font-size: 2.2rem;
+	letter-spacing: 1px;
+}
+
+#home p
+{
+    font-size: 1.5rem;
+}
+
+#home .btn
+{
+	margin-top: 30px;
+	margin-bottom: 35px;
+	flex-wrap: wrap;
+}
+
+#home a
+{
+	text-decoration: none;
+	font-size: 0.9rem;
+	padding: 10px 35px;
+	background-color: #fff;
+	font-weight: 600;
+	border-radius: 5px;
+}
+
+#home .btn a {
+	font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+#partner a {
+	display: inline-block;
+	background-color: none;
+	padding: 0;
+	margin: 0 10px;
+	background-color: transparent;
+}
+
+#partner img {
+	display: block;
+    max-width: 150px; 
+    height: auto; 
+    width: clamp(50px, 20vw, 150px);
+}
+
+
+#home a.blue
+{
+	color: #fff;
+	background: rgb(21, 21, 100);
+	transition: 0.3s ease;
+}
+
+#home a.blue:hover
+{
+	color: rgb(21, 21, 100);
+	/*background: #fff;*/
+	background: #cfd8ff;
+}
+
+#home a.yellow
+{
+	color: #fff;
+	background: #fdc938;
+	transition: 0.3s ease;
+}
+
+#home a.yellow:hover
+{
+	color: rgb(21, 21, 100);
+	/*background: #fff;*/
+	background: #fff3c0;
+}
+
+
+#partner p {
+	word-wrap: break-word; 
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+
+
+/*------------- Hero section styling end --------------*/
+
+
+
+
+/*------------- Experts section styling starts ----------*/
+#experts
+{
+	padding: 8vw 8vw 8vw 8vw;
+	text-align: center;
+}
+
+#experts h1 {
+	font-size: clamp(1.2rem, 2.0vw, 2.5rem);
+
+}
+
+#experts .expert-box
+{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-gap: 1rem;
+	margin-top: 50px;
+}
+
+#experts .expert-box .profile
+{
+	background: #fafaf1;
+	padding: 30px 10px;
+	box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+#experts .expert-box .profile img {
+  width: 150px; 
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto; 
+  display: block; 
+}
+
+.adjust-headshot-david {
+  object-position: center top;
+}
+
+.adjust-headshot-caleb {
+/*  object-position: left bottom;*/
+	object-position: 15% 0px;
+}
+
+#experts .expert-box .profile:hover
+{
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.pro-links
+{
+	margin-top: 10px;
+}
+
+.pro-links i
+{
+	padding: 10px 13px;
+	border: 1px solid rgb(21, 21, 100);
+	cursor: pointer;
+	transition: 0.3s ease;
+}
+
+.pro-links i:hover
+{
+	background: rgb(21, 21, 100);
+	color: #fff;
+}
+/*------------- Experts section styling ends ----------*/
+
+
+.details-section h3 {
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+#dim-red h3 {
+  background-color: #007BFF; /* same as blue button */
+  color: white;
+}
+
+#clustering h3 {
+  background-color: #FFD54F; /* same as yellow button */
+  color: black;
+}
+
+
+#regress h3 {
+  background-color: #7E57C2;
+  color: white;
+}
+
+#classif h3 {
+  background-color: #26A69A;
+  color: white;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+
+/*------------- Footer section styling starts ------------*/
+footer
+{
+	padding: 8vw;
+	background-color: #101c32;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin-top: auto;
+}
+
+footer .footer-col
+{
+	padding-bottom: 40px;
+}
+
+footer h3
+{
+	color: rgb(241, 240, 245);
+	font-weight: 600;
+	padding-bottom: 20px;
+}
+
+footer li
+{
+	list-style: none;
+	color: #7b838a;
+	padding: 10px 0;
+	font-size: 15px;
+	cursor: pointer;
+	transition: 0.3s ease;
+}
+
+footer li:hover
+{
+	color: rgb(241, 240, 245);
+}
+
+footer p
+{
+	color: #7b838a;
+}
+
+footer .subscribe
+{
+	margin-top: 20px;
+}
+
+footer input
+{
+	width: 220px;
+	padding: 15px 12px;
+	background: #334F6C;
+	border: none;
+	outline: none;
+	color: #fff;
+}
+
+footer .subscribe a
+{
+	text-decoration: none;
+	font-size: 0.9rem;
+	padding: 12px 15px;
+	background-color: #fff;
+	font-weight: 600;
+}
+
+footer .subscribe a.yellow
+{
+	color: #fff;
+	background: #fdc93b;
+	transition: 0.3s ease;
+}
+
+footer .subscribe a.yellow:hover
+{
+	color: rgb(21, 21, 100);
+	background: #fff;
+}
+
+footer .copyright
+{
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+footer .copyright p, footer .copyright p > a
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+footer .copyright .pro-links
+{
+	margin-top: 0px;
+}
+
+footer .copyright .pro-links i
+{
+	background-color: #5f7185;
+	color: #fff;
+}
+
+footer .copyright .pro-links i:hover
+{
+	background: #fdc93b;
+	color: #2c2c2c;
+}
+/*------------- Footer section styling ends ------------*/
+
+@media (max-width: 600px) {
+  .page-section {
+    padding-top: 120px; /* adjust as needed */
+  }
+}
+
+
+/*---------------------------------------------------------*/
+/*-------------------- Ipad screen styling ----------------*/
+/*---------------------------------------------------------*/
+@media screen and (max-width: 789px)
+{
+	nav
+	{
+		padding: 15px 20px;
+	}
+
+	nav img
+	{
+		width: 130px;
+	}
+
+	#menu-btn
+	{
+		display: initial;
+	}
+
+	#menu-close
+	{
+		display: initial;
+		font-size: 1.6rem;
+		color: #fff;
+		padding: 30px 0 20px 20px;
+	}
+
+	nav .navigation ul
+	{
+		position: absolute;
+		top: 0;
+		right: -220px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 220px;
+		height: 100vh;
+		background: rgba(17, 20, 104, 0.45);
+		backdrop-filter: blur(4.5px);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		transition: 0.3s ease-in;
+	}
+
+	nav .navigation ul.active
+	{
+		right: 0;
+	}
+
+	nav .navigation ul li
+	{
+		padding: 20px 0 20px 40px;
+		margin-left: 0;
+	}
+
+	nav .navigation ul li a
+	{
+		color: #fff;
+	}
+
+	#home
+	{
+		padding: 0px;
+	}
+
+	#home p
+	{
+		width: 90%;
+	}
+
+	#features
+	{
+		padding: 8vw 4vw 0 4vw;
+	}
+
+	#course
+	{
+		padding: 8vw 4vw 8vw 4vw;
+	}
+
+	#registration
+	{
+		padding: 6vw 4vw 6vw 4vw;
+		gap: 2.2rem;
+	}
+
+	#registration .reminder .time
+	{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-top: 40px;
+	}
+
+	#experts
+	{
+		padding: 8vw 4vw 6vw 4vw;
+	}
+
+	footer .copyright .pro-links
+	{
+		margin-top: 20px;
+	}
+}
+
+
+@media screen and (max-width: 475px)
+{
+	#registration
+	{
+		flex-direction: column;
+	}
+
+	.reminder p, .reminder h1
+	{
+		text-align: center;
+	}
+
+	.reminder h1
+	{
+		font-size: 1.8rem;
+	}
+
+	#registration .reminder .time
+	{
+		justify-content: space-evenly;
+		margin-top: 20px;
+	}
+}
+
+
+/* --- Modern Grid Layout for Unsupervised Section --- */
+.unsup-section-wrapper {
+  display: grid;
+  /* “Try two columns of at least 300px each, but collapse as needed.” */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  /*border: 1px solid green*/
+
+}
+
+
+.unsup-center-content {
+  display: grid;
+  align-content: start;
+  text-align: left;
+  /*border: 1px dashed red;*/
+}
+
+.unsup-inner {
+  display: grid;
+  gap: 1rem;
+}
+
+.unsup-inner h2{
+	font-size: 2rem;
+}
+
+.unsup-inner p{
+	font-size: 1.5rem;
+}
+
+.btn {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  width: 100%;      /* fill its parent, don’t exceed it */
+  max-width: 100%;  /* extra safety */
+}
+
+.tooltip-button {
+  min-width: 0;     /* allow true shrink */
+}
+
+
+.btn .btn-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.btn .btn-desc {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.details-section {
+  display: none;
+  margin-top: 2rem;
+}
+
+.unsup-image-side {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  /*border: 1px solid blue*/
+
+}
+
+.unsup-image-side img {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  /*border: 1px solid red*/
+}
+
+/* Responsive fallback: single column on small screens */
+@media (max-width: 768px) {
+  .unsup-section-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .unsup-image-side {
+    margin-top: 2rem;
+  }
+}
+
+
+/* Container grid for sub-detail: text on left, visual on right */
+.subdetails {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 6px;
+  display: none;  /* hidden by default */
+}
+
+/* Simple styling for the toggle button */
+.subtoggle {
+  background: none;
+  border: none;
+  /*color: #007BFF;*/
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Visual should scale responsively */
+.subdetail-visual img,
+.subdetail-visual video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* Responsive: stack on very narrow screens */
+@media (max-width: 600px) {
+  .subdetails {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hide sections by default */
+.details-section,
+.subdetails {
+  display: none;
+}
+
+.details-section.active {
+  display: block;
+}
+
+.subdetails.active {
+  display: grid;
+}
+
+#tsne-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  border-radius: 8px;
+}
+
+/* Optional: prevent overflow in the grid layout */
+.subdetails img {
+  max-width: 100%;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+#dim-red li {
+  margin-bottom: 0.5rem; 
+}
+
+#clustering li {
+  margin-bottom: 0.5rem; 
+}
+
+#regress li {
+  margin-bottom: 0.5rem; 
+}
+
+#classif li {
+  margin-bottom: 0.5rem; 
+}

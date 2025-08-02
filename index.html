@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Machine Learning Walk-through</title>
+
+	<!-- font Awesome CDN link -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="style.css">
+
+	<!-- JQuery CDN link -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>	
+	<!-- Navigation start -->
+	<nav>
+			<img src="img/neural_net.png" class="logo" alt="">
+
+			<div class="navigation">
+				<ul>
+					<i id="menu-close" class="fas fa-times"></i>
+					<li><a href="index.html" class="active">Home</a></li>
+					<li><a href="unsupervised.html">Unsupervised Learning</a></li>
+					<li><a href="supervised.html">Supervised Learning</a></li>
+					<li><a href="recordings.html">Video Tutorials</a></li>
+				</ul>
+
+				<img src="img/menu.png" id="menu-btn" alt="">
+			</div>
+	</nav>
+	<!-- Navigation ends -->
+
+<!-- Spacer starts -->
+<section id="navbar-spacer"></section>
+<!-- Spacer ends -->
+
+	<!-- Hero section starts from here -->
+	<section id="home">
+		 <div class="text-background">
+		 	<!-- <h2> -->
+			<h2 style="font-size: clamp(1.5rem, 5vw, 2.5rem);">
+				Machine Learning Walkthrough<br>				
+				Select an option:
+			</h2>
+	
+			<div class="btn">
+					<a href="unsupervised.html" class="blue">Unsupervised Learning</a>
+					<a href="supervised.html" class="yellow">Supervised Learning</a>
+			</div>
+	
+			<div id="partner">
+				<a href="https://www.nasa.gov/space-science-and-astrobiology-at-ames/research-teams/ai-astrobiology/" target="_blank">
+					<img src="img/AMESlogoblack.png" alt="">
+				</a>							
+			</div>
+		</div>
+	</section>
+	<!-- Hero section ends from here -->
+
+	<!-- Experts section starts from here -->
+	<section id="experts">
+		<h1>Walkthrough Creators & Sources</h1>
+		<div class="expert-box">
+			<div class="profile">
+				<img src="img/ryanfelton.jpg" alt="">
+				<h6>Dr. Ryan Felton</h6>
+				<p>NASA Ames Research Center</p>
+				<p>Astrobiologist & NPMP Fellow</p>
+				<div class="pro-links">
+					<a href="https://www.nasa.gov/people/ryan-felton/" target="_blank" rel="noopener noreferrer">
+						<i class="fas fa-user"></i>
+					</a>
+					<a href="https://www.linkedin.com/in/ryan-felton-phd-astronomer/" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="profile">
+				<img src="img/calebscharf.jpg" alt="" class="adjust-headshot-caleb">
+				<h6>Dr. Caleb Scharf</h6>
+				<p>NASA Ames Research Center</p>
+				<p>Astrobiologist</p>
+				<div class="pro-links">
+					<a href="https://www.nasa.gov/people/caleb-scharf/" target="_blank" rel="noopener noreferrer">
+						<i class="fas fa-user"></i>
+					</a>
+					<a href="https://www.linkedin.com/in/caleb-scharf-21137024/" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="profile">
+				<img src="img/nathalie-cabrol.jpg" alt="">
+				<h6>Dr. Floyd Nichols</h6>
+				<p>#</p>
+				<p>#</p>
+				<div class="pro-links">
+					<a href="" target="_blank" rel="noopener noreferrer">
+						<i class="fas fa-user"></i>
+					</a>
+					<a href="" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="profile">
+				<img src="img/david-wettergreen.jpg" alt="" class="adjust-headshot-david">
+				<h6>#####</h6>
+				<p>#</p>
+				<p>#</p>
+				<div class="pro-links">
+					<a href="" target="_blank" rel="noopener noreferrer">
+						<i class="fas fa-user"></i>
+					</a>
+					<a href="" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- Experts section ends from here -->
+
+	<!-- Footer section starts from here -->
+		<div id="footer"></div>
+		<script>
+		    fetch('footer.html')
+		        .then(response => {
+		            if (response.ok) {
+		                return response.text();
+		            }
+		            throw new Error('Failed to load footer');
+		        })
+		        .then(data => {
+		            document.getElementById('footer').innerHTML = data;
+		        })
+		        .catch(error => console.error(error));
+		</script>
+	<!-- Footer section ends from here -->
+
+	<script>
+		// Show menu links on burger click
+		$('#menu-btn').click(function(){
+			$('nav .navigation ul').addClass('active')
+		});
+
+		// Hide navbar on click function
+		$('#menu-close').click(function(){
+			$('nav .navigation ul').removeClass('active')
+		});
+	</script>
+</body>
+</html>
