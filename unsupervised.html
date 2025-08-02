@@ -144,32 +144,35 @@
 
 
 <!-- Footer section starts from here -->
-		<div id="footer"></div>
-		<script>
-		    fetch('footer.html')
-		        .then(response => {
-		            if (response.ok) {
-		                return response.text();
-		            }
-		            throw new Error('Failed to load footer');
-		        })
-		        .then(data => {
-		            document.getElementById('footer').innerHTML = data;
-		        })
-		        .catch(error => console.error(error));
-		</script>
+<div id="footer"></div>
+<script>
+    fetch('footer.html')
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            }
+            throw new Error('Failed to load footer');
+        })
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+
+            // Show menu links on burger click
+            $('#menu-btn').click(function(){
+                $('nav .navigation ul').addClass('active');
+            });
+
+            // Hide navbar on click function
+            $('#menu-close').click(function(){
+                $('nav .navigation ul').removeClass('active');
+            });
+        })
+        .catch(error => console.error(error));
+</script>
 <!-- Footer section ends from here -->
+
 	
 	<script>
-		// Show menu links on burger click
-		$('#menu-btn').click(function(){
-			$('nav .navigation ul').addClass('active')
-		});
-
-		// Hide navbar on click function
-		$('#menu-close').click(function(){
-			$('nav .navigation ul').removeClass('active')
-		});
+		
 
 			document.querySelectorAll('.tooltip-button').forEach(button => {
 	  button.addEventListener('click', e => {
