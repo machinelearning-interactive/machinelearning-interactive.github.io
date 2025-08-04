@@ -201,7 +201,16 @@
       if (!isActive) {
         button.classList.add('active');
         section.style.display = 'block';
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const nav = document.querySelector('nav');
+        const navHeight = nav ? nav.offsetHeight : 0;
+        const elementTop = section.getBoundingClientRect().top + window.scrollY;
+
+        window.scrollTo({
+          top: elementTop - navHeight - 10, // subtract 10 extra pixels for spacing
+          behavior: 'smooth'
+        });
+
       }
     });
   });
@@ -229,8 +238,6 @@
   });
 
 </script>
-
-
 
 
 
