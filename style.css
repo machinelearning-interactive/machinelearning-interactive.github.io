@@ -954,3 +954,11 @@ footer .copyright .pro-links i:hover
 #classif li {
   margin-bottom: 0.5rem; 
 }
+
+.details-section h3:first-child {
+  margin-top: 0;
+}
+
+html {
+  overflow-y: scroll;
+}
