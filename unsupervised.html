@@ -127,20 +127,29 @@
     </section>
   </div>
 
-
   <!-- Image area (right column of grid) -->
   <div class="unsup-image-side">
     <figure>
       <img src="img/unsup_da_poian.jpg" alt="Unsupervised Learning Diagram" />
       <figcaption>
-      	Unsupervised Learning Diagram. <br>Image credit: Da Poian et al. 2023
- 	  </figcaption>
+        Image credit: <a href="https://doi.org/10.3389/fspas.2023.1134141" target="_blank" rel="noopener noreferrer">Da Poian et al. 2023</a>
+ 	    </figcaption>
+    </figure>
+
+    <figure id="dr-image" style="display: none; margin-top: 20px;">
+      <img src="img/dimensionality_reduction.jpeg" alt="Dimensionality Reduction Visual" id="dr-img-clickable" style="cursor: pointer;"/>
+      <figcaption>
+        Dimensionality Reduction
+      </figcaption>
     </figure>
   </div>
 
 </div> <!-- closes unsup-section-wrapper -->
 
 
+<div id="lightbox-overlay" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Zoomed image" />
+</div>
 
 
 <!-- Footer section starts from here -->
@@ -170,18 +179,6 @@
 </script>
 <!-- Footer section ends from here -->
 
-	
-	<!-- <script>	
-			document.querySelectorAll('.tooltip-button').forEach(button => {
-	  button.addEventListener('click', e => {
-	    // Remove active class from other buttons
-	    document.querySelectorAll('.tooltip-button.active').forEach(activeBtn => {
-	      if (activeBtn !== button) activeBtn.classList.remove('active');
-	    });
-	    });
-  		});
-	</script> -->
-
 <script>
   // Toggle active class on clicked tooltip-button
   document.querySelectorAll('.tooltip-button').forEach(button => {
@@ -197,6 +194,10 @@
         // Also hide all subdetails inside
         sec.querySelectorAll('.subdetails').forEach(sub => sub.style.display = 'none');
       });
+
+      if (targetId !== 'dim-red') {
+      document.getElementById('dr-image').style.display = 'none';
+      }
 
       if (!isActive) {
         button.classList.add('active');
@@ -215,16 +216,6 @@
     });
   });
 
-  // // Close tooltip if clicking outside any tooltip-button
-  // document.addEventListener('click', e => {
-  //   if (!e.target.closest('.tooltip-button') && !e.target.closest('.details-section')) {
-  //     document.querySelectorAll('.tooltip-button').forEach(btn => btn.classList.remove('active'));
-  //     document.querySelectorAll('.details-section').forEach(sec => {
-  //       sec.style.display = 'none';
-  //       sec.querySelectorAll('.subdetails').forEach(sub => sub.style.display = 'none');
-  //     });
-  //   }
-  // });
 
 // Toggle sub-detail panels (e.g. PCA)
   document.querySelectorAll(".subtoggle").forEach(btn => {
@@ -236,9 +227,39 @@
       panel.style.display = (panel.style.display === "block") ? "none" : "block";
     });
   });
-
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const drBtn = document.querySelector('[data-target="dim-red"]');
+    const drImage = document.getElementById("dr-image");
+
+    drBtn.addEventListener("click", () => {
+      // Toggle the image on DR click
+      if (drImage.style.display === "none") {
+        drImage.style.display = "block";
+      } else {
+        drImage.style.display = "none";
+      }
+    });
+  });
+</script>
+
+<script>
+  const lightbox = document.getElementById('lightbox-overlay');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const drImg = document.getElementById('dr-img-clickable');
+
+  drImg.addEventListener('click', () => {
+    lightboxImg.src = drImg.src;
+    lightbox.style.display = 'flex';
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+  }
+</script>
 
 
 </body>
