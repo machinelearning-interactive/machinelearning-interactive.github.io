@@ -152,6 +152,7 @@
 </div>
 
 
+
 <!-- Footer section starts from here -->
 <div id="footer"></div>
 <script>
@@ -245,7 +246,7 @@
   });
 </script>
 
-<script>
+<!-- <script>
   const lightbox = document.getElementById('lightbox-overlay');
   const lightboxImg = document.getElementById('lightbox-img');
   const drImg = document.getElementById('dr-img-clickable');
@@ -259,7 +260,28 @@
     lightbox.style.display = 'none';
     lightboxImg.src = '';
   }
+</script> -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const lightbox = document.getElementById('lightbox-overlay');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const drImg = document.getElementById('dr-img-clickable');
+
+    if (drImg) {
+      drImg.addEventListener('click', () => {
+        lightboxImg.src = drImg.src;
+        lightbox.style.display = 'flex';
+      });
+    }
+
+    window.closeLightbox = function () {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    }
+  });
 </script>
+
 
 
 </body>
